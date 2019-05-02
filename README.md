@@ -60,11 +60,21 @@ On the seconds line, the String that corresponds to the series of movement of Ar
 
 The output for each of those inputs would be:
 - savethecat "a1.txt";
+infinity
+stay
+val it = () : unit
+
+- savethecat "a2.txt";
+5
+RDDLL
+val it = () : unit
+
+- savethecat "a3.txt";
 15
 DDDRRRURR
 val it = () : unit
 
-- savethecat "a2.txt";
+- savethecat "a4.txt";
 infinity
 LLUU
 val it = () : unit
@@ -74,5 +84,5 @@ As an example also, the analysis of the program for the a2.txt would be:
 .A.XX.  ..AXX.  ..WXX.  .WWXXW  WWWXXW  WWWXXW
 XX.X..  XX.X..  XXAX..  XXWX..  XXWX.W  XXWXWW
 .....X  .....X  .....X  ..A..X  .AW..X  AWWW.X
- t=0      t=1     t=2     t=3     t=4     t=5
-  R        D       D       L       L
+t=0      t=1     t=2     t=3     t=4     t=5
+ R        D       D       L       L
