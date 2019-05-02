@@ -2,9 +2,9 @@ structure M = BinaryMapFn(
 	struct
 		type ord_key = int*int
 		fun compare (x:int*int, y:int*int) =
-				if (#1 x > #1 y) orelse ((#1 x = #1 y) andalso (#2 x > #2 y)) then GREATER
-				else if (#1 x < #1 y) orelse ((#1 x = #1 y) andalso (#2 x < #2 y)) then LESS
-				else EQUAL
+			if (#1 x > #1 y) orelse ((#1 x = #1 y) andalso (#2 x > #2 y)) then GREATER
+			else if (#1 x < #1 y) orelse ((#1 x = #1 y) andalso (#2 x < #2 y)) then LESS
+			else EQUAL
 	end
 );
 
