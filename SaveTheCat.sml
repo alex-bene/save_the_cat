@@ -70,29 +70,6 @@ fun savethecat txt =
 		val base_map_tree = water_flood_fill(waters, base_map_tree)
 		(* --------------- FLOOD FILL STARTING FROM THE COORDINATES IN WATERS --------------- *)
 
-
-		(*
-		(* --------------- PRINT WATER FLOODED BASE MAP --------------- *)
-		fun get_status(line, column, base_map_tree:{status:char, time:int, cat_time:int, cat_prev:int*int, cat_move:char} M.map) =
-			(Char.toString (#status (valOf(M.find(base_map_tree, (line, column))))))^" "^(Int.toString (#time (valOf(M.find(base_map_tree, (line, column))))));
-
-		print(
-			get_status(0,0, base_map_tree)^"   "^get_status(0,1, base_map_tree)^"   "^get_status(0,2, base_map_tree)^"   "^get_status(0,3, base_map_tree)^"   "^get_status(0,4, base_map_tree)^"   "^get_status(0,5, base_map_tree)^"   "^get_status(0,6, base_map_tree)^"   "^get_status(0,7, base_map_tree)
-			^"\n"^
-			get_status(1,0, base_map_tree)^"   "^get_status(1,1, base_map_tree)^"   "^get_status(1,2, base_map_tree)^"   "^get_status(1,3, base_map_tree)^"   "^get_status(1,4, base_map_tree)^"   "^get_status(1,5, base_map_tree)^"   "^get_status(1,6, base_map_tree)^"   "^get_status(1,7, base_map_tree)
-			^"\n"^
-			get_status(2,0, base_map_tree)^"   "^get_status(2,1, base_map_tree)^"   "^get_status(2,2, base_map_tree)^"   "^get_status(2,3, base_map_tree)^"   "^get_status(2,4, base_map_tree)^"   "^get_status(2,5, base_map_tree)^"   "^get_status(2,6, base_map_tree)^"   "^get_status(2,7, base_map_tree)
-			^"\n"^
-			get_status(3,0, base_map_tree)^"   "^get_status(3,1, base_map_tree)^"   "^get_status(3,2, base_map_tree)^"   "^get_status(3,3, base_map_tree)^"   "^get_status(3,4, base_map_tree)^"   "^get_status(3,5, base_map_tree)^"   "^get_status(3,6, base_map_tree)^"   "^get_status(3,7, base_map_tree)
-			^"\n"^
-			get_status(4,0, base_map_tree)^"   "^get_status(4,1, base_map_tree)^"   "^get_status(4,2, base_map_tree)^"   "^get_status(4,3, base_map_tree)^"   "^get_status(4,4, base_map_tree)^"   "^get_status(4,5, base_map_tree)^"   "^get_status(4,6, base_map_tree)^"   "^get_status(4,7, base_map_tree)
-			^"\n"^
-			get_status(5,0, base_map_tree)^"   "^get_status(5,1, base_map_tree)^"   "^get_status(5,2, base_map_tree)^"   "^get_status(5,3, base_map_tree)^"   "^get_status(5,4, base_map_tree)^"   "^get_status(5,5, base_map_tree)^"   "^get_status(5,6, base_map_tree)^"   "^get_status(5,7, base_map_tree)
-			^"\n"
-		);
-		(* --------------- PRINT WATER FLOODED BASE MAP --------------- *)
-		*)
-
 		(* --------------- FLOOD FILL STARTING FROM THE COORDINATES IN CAT --------------- *)
 		fun cat_flood_fill([], tree:{status:char, time:int, cat_time:int, cat_prev:int*int, cat_move:char} M.map, water_max_times:{water_time:int option, water_pos:int*int} list) = (tree, water_max_times)
 			| cat_flood_fill(c_cat::rest_pos, tree:{status:char, time:int, cat_time:int, cat_prev:int*int, cat_move:char} M.map, water_max_times:{water_time:int option, water_pos:int*int} list)=
@@ -122,27 +99,7 @@ fun savethecat txt =
 			end;
 		val (base_map_tree, water_max_times) = cat_flood_fill(cat, M.insert(base_map_tree, (hd cat), {status = #"C", time = #time (valOf(M.find(base_map_tree, (hd cat)))), cat_time = 0, cat_prev = (0,0), cat_move = #"N"}), if(waters = []) then [{water_time = SOME 0, water_pos = hd cat}] else [{water_time = SOME 0, water_pos = hd waters}]);
 		(* --------------- FLOOD FILL STARTING FROM THE COORDINATES IN CAT --------------- *)
-(*
-		(* --------------- PRINT CAT FLOODED BASE MAP --------------- *)
-		fun get_cat(line, column, base_map_tree:{status:char, time:int, cat_time:int, cat_prev:int*int, cat_move:char} M.map) =
-			(Char.toString (#status (valOf(M.find(base_map_tree, (line, column))))))^" "^(Int.toString (#cat_time (valOf(M.find(base_map_tree, (line, column))))))^" "^(Char.toString (#cat_move (valOf(M.find(base_map_tree, (line, column))))))
 
-		print(
-			get_cat(0,0, base_map_tree)^"   "^get_cat(0,1, base_map_tree)^"   "^get_cat(0,2, base_map_tree)^"   "^get_cat(0,3, base_map_tree)^"   "^get_cat(0,4, base_map_tree)^"   "^get_cat(0,5, base_map_tree)^"   "^get_cat(0,6, base_map_tree)^"   "^get_cat(0,7, base_map_tree)
-			^"\n"^
-			get_cat(1,0, base_map_tree)^"   "^get_cat(1,1, base_map_tree)^"   "^get_cat(1,2, base_map_tree)^"   "^get_cat(1,3, base_map_tree)^"   "^get_cat(1,4, base_map_tree)^"   "^get_cat(1,5, base_map_tree)^"   "^get_cat(1,6, base_map_tree)^"   "^get_cat(1,7, base_map_tree)
-			^"\n"^
-			get_cat(2,0, base_map_tree)^"   "^get_cat(2,1, base_map_tree)^"   "^get_cat(2,2, base_map_tree)^"   "^get_cat(2,3, base_map_tree)^"   "^get_cat(2,4, base_map_tree)^"   "^get_cat(2,5, base_map_tree)^"   "^get_cat(2,6, base_map_tree)^"   "^get_cat(2,7, base_map_tree)
-			^"\n"^
-			get_cat(3,0, base_map_tree)^"   "^get_cat(3,1, base_map_tree)^"   "^get_cat(3,2, base_map_tree)^"   "^get_cat(3,3, base_map_tree)^"   "^get_cat(3,4, base_map_tree)^"   "^get_cat(3,5, base_map_tree)^"   "^get_cat(3,6, base_map_tree)^"   "^get_cat(3,7, base_map_tree)
-			^"\n"^
-			get_cat(4,0, base_map_tree)^"   "^get_cat(4,1, base_map_tree)^"   "^get_cat(4,2, base_map_tree)^"   "^get_cat(4,3, base_map_tree)^"   "^get_cat(4,4, base_map_tree)^"   "^get_cat(4,5, base_map_tree)^"   "^get_cat(4,6, base_map_tree)^"   "^get_cat(4,7, base_map_tree)
-			^"\n"^
-			get_cat(5,0, base_map_tree)^"   "^get_cat(5,1, base_map_tree)^"   "^get_cat(5,2, base_map_tree)^"   "^get_cat(5,3, base_map_tree)^"   "^get_cat(5,4, base_map_tree)^"   "^get_cat(5,5, base_map_tree)^"   "^get_cat(5,6, base_map_tree)^"   "^get_cat(5,7, base_map_tree)
-			^"\n"
-		)
-		(* --------------- PRINT CAT FLOODED BASE MAP --------------- *)
-*)
 		(* --------------- FIND THE UPPER AND MORE LEFT PLACE FROM THE ONES HAVING THE MAXIMUM TIME FOR THE CAT --------------- *)
 		fun find_upper_left([], final_pos) = ([], final_pos)
 				| find_upper_left(water_max_time::rest_water_max_times, final_pos:{water_time:int option, water_pos:int*int}) =
